@@ -1,0 +1,336 @@
+/* ============================================================
+   TREC Australia — website revamp concept
+   Design system + layout
+   ============================================================ */
+
+:root{
+  /* Brand */
+  --navy:#0f2847;
+  --navy-deep:#091a31;
+  --navy-mid:#16375e;
+  --red:#cf1027;
+  --red-dark:#a80d20;
+  --red-soft:#fdeef0;
+
+  /* Text */
+  --ink:#14203a;
+  --body:#5a6b80;
+  --muted:#5f7288;
+
+  /* Surfaces */
+  --bg:#fff;
+  --soft:#f5f8fc;
+  --line:#e5ebf3;
+
+  /* Elevation */
+  --sh-sm:0 2px 10px rgba(15,40,71,.05);
+  --sh-md:0 14px 38px rgba(15,40,71,.10);
+  --sh-lg:0 30px 70px rgba(9,26,49,.20);
+
+  /* Type */
+  --head:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font:var(--head);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--body);background:var(--bg);line-height:1.65;font-size:16px;overflow-x:hidden}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:var(--head);color:var(--ink);line-height:1.08;letter-spacing:-.02em}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+section{padding:100px 0}
+/* keeps the sticky nav from covering a section heading on anchor jumps */
+section[id],header[id]{scroll-margin-top:96px}
+svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- Shared atoms ---------- */
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:18px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--red);flex:none}
+.eyebrow.c{justify-content:center}
+
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:8px;font-weight:700;font-family:var(--head);font-size:.97rem;text-decoration:none;transition:all .2s ease;border:none;cursor:pointer}
+.btn svg{width:16px;height:16px;transition:transform .2s ease}
+.btn:hover svg{transform:translateX(4px)}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 10px 24px rgba(207,16,39,.28)}
+.btn-red:hover{background:var(--red-dark)}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:#fff}
+
+.lnk{display:inline-flex;align-items:center;gap:8px;color:var(--red);font-weight:700;font-family:var(--head);font-size:.9rem;text-decoration:none}
+.lnk svg{width:15px;height:15px;transition:transform .2s ease}
+.lnk:hover svg{transform:translateX(4px)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
+
+/* ---------- Navigation ---------- */
+nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:84px;gap:24px}
+.logo img{height:50px;width:auto}
+.nav-links{display:flex;gap:30px;align-items:center;list-style:none}
+.nav-links > li > a{display:flex;align-items:center;gap:5px;color:#3a4a61;text-decoration:none;font-size:.93rem;font-weight:500;padding:6px 0;border-bottom:2px solid transparent}
+.nav-links > li > a:hover,.nav-links a.on{color:var(--red);border-bottom-color:var(--red)}
+.nav-links svg{width:11px;height:11px;opacity:.6}
+/* Selector must outrank `.nav-links > li > a` above, or its `padding:6px 0`
+   wins on specificity and flattens the button. */
+.nav-links > li > a.nav-cta{background:var(--red);color:#fff;padding:12px 24px;
+  border-radius:8px;font-weight:700;font-family:var(--head);font-size:.92rem;
+  border-bottom:2px solid transparent;display:inline-flex;align-items:center;gap:9px;
+  white-space:nowrap;flex:none;line-height:1.1}
+.nav-links > li > a.nav-cta:hover{background:var(--red-dark);color:#fff;border-bottom-color:transparent}
+.nav-cta svg{width:14px;height:14px;opacity:1}
+.nav-links > li{flex:none}
+.burger{display:none;background:none;border:none;color:var(--navy);cursor:pointer;padding:6px}
+.burger svg{width:26px;height:26px;stroke-width:2}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;background:var(--navy-deep);overflow:hidden;min-height:640px;display:flex;align-items:center}
+.hero-img{position:absolute;inset:0 0 0 32%}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:58% 38%}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--navy-deep) 0%,rgba(9,26,49,.95) 24%,rgba(9,26,49,.58) 50%,rgba(9,26,49,.10) 76%,rgba(9,26,49,.40) 100%)}
+.hero-in{position:relative;z-index:2;width:100%;padding:96px 0 124px}
+.hero-copy{max-width:38rem}
+.hero .eyebrow{color:#ff6b7d}
+.hero .eyebrow::before{background:var(--red)}
+.hero h1{font-size:clamp(2.05rem,3.7vw,3.1rem);font-weight:800;color:#fff;margin-bottom:22px}
+.hero h1 .l{display:block;white-space:nowrap}
+.hero h1 .w2{color:#cfdcec}
+.hero h1 .r{color:#ff3b52}
+/* keyword sub-line lives inside the H1 for SEO, styled as a lead paragraph */
+.hero h1 .kw{display:block;margin-top:20px;font-family:var(--font);font-size:1.08rem;font-weight:400;line-height:1.6;letter-spacing:0;color:#b6c6da;max-width:31rem}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px}
+.hero-svcs{display:flex;gap:30px;flex-wrap:wrap}
+.hero-svcs div{display:flex;align-items:center;gap:10px;color:#dce6f2;font-size:.83rem;font-weight:500;white-space:nowrap}
+.hero-svcs svg{width:23px;height:23px;color:#ff4d63;stroke-width:1.4}
+.rail{position:absolute;right:34px;top:50%;transform:translateY(-50%);z-index:3;display:grid;gap:11px;text-align:right}
+.rail span{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:600}
+.rail span.a{color:#fff}
+.hero-quote{position:absolute;right:0;bottom:0;z-index:3;background:var(--navy-deep);color:#fff;padding:26px 40px 26px 32px;max-width:330px;border-left:3px solid var(--red)}
+.hero-quote p{font-family:var(--head);font-size:1.02rem;line-height:1.35;color:#fff;font-weight:600}
+
+/* ---------- Client trust strip ---------- */
+.trust{border-bottom:1px solid var(--line);background:#fff;padding:26px 0}
+.trust-in{display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap}
+.trust-label{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.trust-logos{display:flex;gap:40px;align-items:center;flex-wrap:wrap;list-style:none}
+.trust-logos li{font-family:var(--head);font-weight:700;color:#5b7188;font-size:1rem}
+.trust-logos strong{color:var(--red);font-weight:800}
+
+/* ---------- Bridge band (Australia <-> Philippines) ---------- */
+.bridge-sec{padding:56px 0 0}
+.bridge{position:relative;height:300px;border-radius:20px;overflow:hidden;box-shadow:var(--sh-md)}
+.bh{position:absolute;top:0;bottom:0;width:58%;overflow:hidden;background:var(--navy-deep)}
+.bh-l{left:0}
+.bh-r{right:0}
+.bh img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bh::after{content:"";position:absolute;inset:0}
+.bh-l::after{background:linear-gradient(100deg,rgba(8,22,42,.62) 0%,rgba(8,22,42,.14) 52%,rgba(8,22,42,.40) 100%)}
+.bh-r::after{background:linear-gradient(260deg,rgba(8,22,42,.62) 0%,rgba(8,22,42,.14) 52%,rgba(8,22,42,.40) 100%)}
+.bh .tag{position:absolute;z-index:2;top:26px;font-family:var(--head);font-weight:700;font-size:1.5rem;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.bh-l .tag{left:34px}
+.bh-r .tag{right:34px}
+.bmid{position:absolute;left:50%;top:0;bottom:0;width:54%;transform:translateX(-50%);background:#fff;clip-path:polygon(13% 0,100% 0,87% 100%,0 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:0 12%}
+.bmid h2{font-size:1.18rem;margin-bottom:12px;line-height:1.25}
+.bmid .rule{width:32px;height:2px;background:var(--red);margin:0 auto 12px}
+.bmid p{font-size:.85rem;line-height:1.5}
+
+/* ---------- Section headings ---------- */
+.head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:48px;flex-wrap:wrap}
+.head-row h2,.sec-head h2{font-size:clamp(1.7rem,3vw,2.35rem);font-weight:800}
+.sec-head{max-width:620px;margin-bottom:50px}
+.sec-head.c{margin-inline:auto;text-align:center}
+.sec-head p{margin-top:14px}
+
+/* ---------- Stats band ---------- */
+.stats{padding:64px 0 6px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.stats-grid > div{padding:26px 24px;background:var(--soft);border:1px solid var(--line);border-radius:14px}
+.stats-grid b{display:block;font-family:var(--head);font-size:2.1rem;font-weight:800;
+  color:var(--navy);letter-spacing:-.03em;line-height:1;margin-bottom:9px}
+.stats-grid span{display:block;font-size:.88rem;line-height:1.45;color:var(--body)}
+
+/* ---------- Services ---------- */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.svc{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--sh-sm);transition:box-shadow .25s ease,transform .25s ease}
+.svc:hover{box-shadow:var(--sh-md);transform:translateY(-4px)}
+.svc-img{position:relative;height:182px}
+.svc-img img{width:100%;height:100%;object-fit:cover}
+.svc-badge{position:absolute;left:20px;bottom:-24px;width:52px;height:52px;border-radius:12px;background:#fff;box-shadow:var(--sh-sm);display:flex;align-items:center;justify-content:center;color:var(--red)}
+.svc-badge svg{width:24px;height:24px}
+.svc-body{padding:44px 24px 26px}
+.svc-body h3{font-size:1.18rem;margin-bottom:10px}
+.svc-body p{font-size:.93rem;margin-bottom:16px}
+
+/* ---------- Why TREC ---------- */
+.why{background:var(--soft);border-block:1px solid var(--line)}
+.why-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:64px;align-items:center}
+.why h2{font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:16px}
+.why-list{display:grid;grid-template-columns:1fr 1fr}
+.wl{padding:24px 26px;display:flex;gap:16px;align-items:flex-start}
+.wl:nth-child(1),.wl:nth-child(2){border-bottom:1px solid var(--line)}
+.wl:nth-child(odd){border-right:1px solid var(--line)}
+.wl svg{width:30px;height:30px;color:var(--red);flex:none;stroke-width:1.4;margin-top:2px}
+.wl h3{font-size:.98rem;margin-bottom:4px}
+.wl p{font-size:.86rem;line-height:1.5}
+
+/* ---------- Industries ----------
+   Each tile takes an optional photo at assets/industries/<slug>.jpg.
+   If the file is missing the <img> removes itself and the gradient shows. */
+.ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ind{position:relative;height:210px;border-radius:12px;overflow:hidden;background:linear-gradient(165deg,#1a3f6b,var(--navy-deep));display:flex;flex-direction:column;justify-content:flex-end;padding:18px 15px;color:#fff;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease}
+.ind:hover{transform:translateY(-4px);box-shadow:var(--sh-md)}
+.ind img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.ind::before{content:"";position:absolute;inset:0;z-index:1;background:
+  linear-gradient(180deg,rgba(9,26,49,.16) 0%,rgba(9,26,49,.50) 50%,rgba(9,26,49,.93) 100%),
+  radial-gradient(150px 130px at 85% 6%,rgba(207,16,39,.32),transparent 72%)}
+.ind .ic{position:relative;z-index:2;color:#ff5468;margin-bottom:auto}
+.ind .ic svg{width:27px;height:27px;stroke-width:1.4}
+.ind h3{position:relative;z-index:2;font-size:.8rem;font-weight:700;line-height:1.3;margin-bottom:8px;letter-spacing:-.01em;color:#fff}
+.ind i{position:relative;z-index:2;color:#ff5468}
+.ind i svg{width:15px;height:15px;stroke-width:2}
+
+/* ---------- Directors ---------- */
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:900px;margin:0 auto}
+.tm{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--sh-sm);transition:box-shadow .25s ease,transform .25s ease}
+.tm:hover{box-shadow:var(--sh-md);transform:translateY(-3px)}
+.tm img{width:100%;height:340px;object-fit:cover;object-position:center 22%}
+.tm-b{padding:28px 30px 32px}
+.tm-b h3{font-size:1.35rem;margin-bottom:3px}
+.tm-b .role{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:13px}
+.tm-b p{font-size:.93rem;line-height:1.6}
+
+/* ---------- Testimonials ---------- */
+.testi{background:var(--soft);border-block:1px solid var(--line)}
+.t-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+.t-grid h2{font-size:clamp(1.65rem,2.8vw,2.2rem)}
+/* Slides stack in the same grid cell so the card height never jumps */
+.t-stack{display:grid}
+.t-stack > .t-card{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .35s ease,transform .35s ease,visibility .35s}
+.t-stack > .t-card.on{opacity:1;visibility:visible;transform:none}
+.t-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:38px 40px;box-shadow:var(--sh-md)}
+.t-card .mark{font-family:Georgia,serif;font-size:4rem;line-height:.7;color:var(--red);opacity:.22;margin-bottom:10px}
+.t-card blockquote{font-size:1.04rem;color:var(--ink);font-style:italic;line-height:1.6;margin-bottom:24px}
+.t-who{display:flex;align-items:center;gap:14px}
+.av{width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;font-family:var(--head);font-weight:700;font-size:.88rem;display:flex;align-items:center;justify-content:center;flex:none}
+.t-who b{display:block;color:var(--ink);font-family:var(--head);font-size:.95rem}
+.t-who small{color:var(--muted);font-size:.8rem}
+.t-nav{display:flex;gap:8px;margin-top:26px;align-items:center}
+.t-nav button{width:9px;height:9px;padding:0;border:none;border-radius:50%;background:#c9d6e6;cursor:pointer;
+  transition:width .25s ease,background .25s ease}
+.t-nav button:hover{background:#aebed2}
+.t-nav button.a{background:var(--red);width:24px;border-radius:5px}
+.t-nav button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* ---------- Closing CTA ---------- */
+.cta{background:linear-gradient(115deg,var(--navy-deep) 0%,var(--navy) 55%,#164274 100%);color:#fff;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 300px at 88% 10%,rgba(207,16,39,.26),transparent 65%)}
+.cta-grid{position:relative;display:grid;grid-template-columns:1fr 1.02fr;gap:64px;align-items:center}
+.cta h2{color:#fff;font-size:clamp(1.6rem,2.9vw,2.2rem);margin-bottom:16px}
+.cta-copy p{color:#b6c6da;margin-bottom:26px}
+.cta-facts{list-style:none;display:grid;gap:14px}
+.cta-facts li{display:flex;align-items:center;gap:12px;color:#dce6f2;font-size:.97rem}
+.cta-facts svg{width:19px;height:19px;color:#ff5468;flex:none}
+.cta-facts a{color:#dce6f2;text-decoration:none}
+.cta-facts a:hover{color:#fff}
+.cta-facts strong{color:#fff}
+
+/* Enquiry form */
+.form-card{background:#fff;border-radius:18px;padding:34px 34px 30px;box-shadow:var(--sh-lg)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fld{display:block;margin-bottom:16px}
+.fld > span{display:block;font-family:var(--head);font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:7px}
+.fld em{color:var(--red);font-style:normal}
+.fld input,.fld select,.fld textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:9px;
+  font-family:var(--font);font-size:.95rem;color:var(--ink);background:#fff;transition:border-color .18s ease,box-shadow .18s ease}
+.fld input::placeholder,.fld textarea::placeholder{color:#a9b7c8}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(207,16,39,.12)}
+.fld input.err,.fld select.err,.fld textarea.err{border-color:var(--red);background:var(--red-soft)}
+.fld textarea{resize:vertical;min-height:86px}
+.form-card .btn{width:100%;justify-content:center;margin-top:4px}
+.f-note{font-size:.79rem;color:var(--muted);text-align:center;margin-top:14px}
+.form-done{text-align:center;padding:30px 10px}
+.form-done .tick{width:60px;height:60px;border-radius:50%;background:var(--red-soft);color:var(--red);
+  font-size:1.9rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.form-done h3{font-size:1.25rem;margin-bottom:8px}
+.form-done p{color:var(--body);margin:0}
+
+/* ---------- Footer ---------- */
+footer{background:var(--navy-deep);color:#8ba0ba;padding:62px 0 30px;font-size:.9rem}
+.f-grid{display:grid;grid-template-columns:1.7fr 1fr 1.15fr 1.3fr .8fr;gap:34px;margin-bottom:44px}
+.f-logo{background:#fff;border-radius:10px;padding:10px 13px;display:inline-block;margin-bottom:16px}
+.f-logo img{height:42px}
+footer .f-h{color:#fff;font-size:.92rem;font-weight:700;margin-bottom:15px;font-family:var(--head)}
+footer ul{list-style:none;display:grid;gap:9px}
+footer a{color:#8ba0ba;text-decoration:none}
+footer a:hover{color:#fff}
+.f-ct{display:flex;gap:10px;align-items:flex-start}
+.f-ct svg{width:16px;height:16px;color:var(--red);flex:none;margin-top:4px}
+.f-soc{display:flex;gap:10px}
+.f-soc a{width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.09);display:flex;align-items:center;justify-content:center;color:#c5d4e6}
+.f-soc a:hover{background:var(--red);color:#fff}
+.f-soc svg{width:17px;height:17px;stroke-width:1.7}
+.f-bot{border-top:1px solid rgba(255,255,255,.09);padding-top:22px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.8rem}
+
+/* Concept watermark — delete this block when the site goes live */
+.badge{position:fixed;bottom:16px;left:16px;z-index:80;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:.76rem;font-weight:600;color:var(--navy);box-shadow:var(--sh-md)}
+.badge b{color:var(--red)}
+
+/* ---------- Responsive ---------- */
+/* The desktop nav row needs ~980px. Collapse it to the burger before that,
+   independently of the layout breakpoints below. */
+@media (max-width:1024px){
+  .nav-links{position:fixed;inset:84px 0 auto 0;background:#fff;flex-direction:column;
+    align-items:stretch;padding:22px 28px 28px;gap:14px;display:none;
+    box-shadow:var(--sh-md);border-bottom:1px solid var(--line)}
+  .nav-links.open{display:flex}
+  .burger{display:block}
+  /* inline-flex shrink-wraps; switch to block-level flex so it fills the drawer */
+  .nav-links > li > a.nav-cta{display:flex;justify-content:center;margin-top:8px;padding:14px 24px}
+}
+
+@media (max-width:1080px){
+  .rail{display:none}
+}
+@media (max-width:940px){
+  section{padding:70px 0}
+  .hero{min-height:auto;display:block}
+  .hero-copy{max-width:none}
+  .hero .eyebrow{font-size:.64rem;letter-spacing:.13em;gap:9px}
+  .hero .eyebrow::before{width:18px}
+  .hero-img{inset:0}
+  .hero-img::after{background:linear-gradient(180deg,rgba(9,26,49,.93) 0%,rgba(9,26,49,.87) 55%,rgba(9,26,49,.95) 100%)}
+  .hero-in{padding:70px 0 76px}
+  .hero h1{font-size:clamp(1.85rem,7vw,2.6rem)}
+  .hero h1 .l{white-space:normal}
+  .hero-quote{position:static;max-width:none;margin:30px 28px 0;padding:22px 24px;background:rgba(255,255,255,.08);border-radius:10px;border-left:3px solid var(--red)}
+  .hero-svcs{gap:20px}
+  .bridge{height:auto;border-radius:16px}
+  .bh{position:relative;width:100%;height:132px;inset:auto}
+  .bh .tag{top:auto;bottom:18px;font-size:1.3rem}
+  .bh-l .tag{left:24px}
+  .bh-r .tag{right:24px}
+  .bmid{position:static;width:100%;transform:none;clip-path:none;padding:32px 28px}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .svc-grid{grid-template-columns:1fr}
+  .why-grid,.t-grid{grid-template-columns:1fr;gap:36px}
+  .team-grid{grid-template-columns:1fr}
+  .cta-grid{grid-template-columns:1fr;gap:34px}
+  .f-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .trust-in{gap:16px}
+  .trust-logos{gap:24px}
+  .trust-logos li{font-size:.92rem}
+}
+@media (max-width:560px){
+  .stats-grid{grid-template-columns:1fr}
+  .why-list{grid-template-columns:1fr}
+  .wl{border-right:none !important;border-bottom:1px solid var(--line)}
+  .ind-grid{grid-template-columns:1fr 1fr}
+  .tm img{height:300px}
+  .f-grid{grid-template-columns:1fr}
+  .t-card{padding:30px 26px}
+  .f-row{grid-template-columns:1fr;gap:0}
+  .form-card{padding:26px 22px 24px}
+}
